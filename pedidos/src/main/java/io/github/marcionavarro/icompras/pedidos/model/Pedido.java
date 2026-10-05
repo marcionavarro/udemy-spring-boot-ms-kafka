@@ -1,5 +1,6 @@
 package io.github.marcionavarro.icompras.pedidos.model;
 
+import io.github.marcionavarro.icompras.pedidos.controller.dto.DadosPagamentoDTO;
 import io.github.marcionavarro.icompras.pedidos.model.enums.StatusPedido;
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -8,6 +9,7 @@ import lombok.Setter;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Table(name = "pedidos")
@@ -39,6 +41,12 @@ public class Pedido {
     @Column(name = "codigo_rastreio")
     private String codigoRastreio;
 
-    @Column(name = "url_inf")
+    @Column(name = "url_nf")
     private String urlNotaFiscal;
+
+    @Transient
+    private DadosPagamentoDTO dadosPagamento;
+
+    @OneToMany(mappedBy = "pedido")
+    private List<ItemPedido> itens;
 }
