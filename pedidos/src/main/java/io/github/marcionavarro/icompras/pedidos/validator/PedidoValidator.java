@@ -1,0 +1,10 @@
+package io.github.marcionavarro.icompras.pedidos.validator;
+
+import io.github.marcionavarro.icompras.pedidos.model.Pedido;
+import org.springframework.stereotype.Component;
+
+@Component
+public class PedidoValidator {
+
+    public void validar(Pedido pedido) {}
+}
