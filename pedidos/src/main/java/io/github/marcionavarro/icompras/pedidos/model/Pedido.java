@@ -22,6 +22,9 @@ public class Pedido {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long codigo;
 
+    @Column(name = "codigo_cliente", nullable = false)
+    private Long codigoCliente;
+
     @Column(name = "data_pedido", nullable = false)
     private LocalDateTime dataPedido;
 
