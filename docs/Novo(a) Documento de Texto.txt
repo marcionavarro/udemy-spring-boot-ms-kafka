@@ -1,2 +1,0 @@
-https://github.com/cursodsousa/curso-spring-kafka
-https://mapstruct.org/
