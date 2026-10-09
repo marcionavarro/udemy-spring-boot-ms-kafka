@@ -48,7 +48,7 @@ public class Pedido {
     private String urlNotaFiscal;
 
     @Transient
-    private DadosPagamentoDTO dadosPagamento;
+    private DadosPagamento dadosPagamento;
 
     @OneToMany(mappedBy = "pedido")
     private List<ItemPedido> itens;
