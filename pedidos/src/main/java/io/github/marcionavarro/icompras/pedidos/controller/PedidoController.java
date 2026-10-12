@@ -6,13 +6,13 @@ import io.github.marcionavarro.icompras.pedidos.controller.mappers.PedidoMapper;
 import io.github.marcionavarro.icompras.pedidos.model.ErroResposta;
 import io.github.marcionavarro.icompras.pedidos.model.exception.ItemNaoEncontradoException;
 import io.github.marcionavarro.icompras.pedidos.model.exception.ValidationException;
+import io.github.marcionavarro.icompras.pedidos.publisher.DetalhePedidoMapper;
+import io.github.marcionavarro.icompras.pedidos.publisher.representation.DetalhePedidoRepresentation;
 import io.github.marcionavarro.icompras.pedidos.service.PedidoService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequestMapping("pedidos")
@@ -21,6 +21,7 @@ public class PedidoController {
 
     private final PedidoService service;
     private final PedidoMapper mapper;
+    private final DetalhePedidoMapper detalhePedidoMapper;
 
     @PostMapping
     public ResponseEntity<Object> criar(@RequestBody NovoPedidoDTO dto) {
@@ -43,5 +44,15 @@ public class PedidoController {
             var erro = new ErroResposta("Item não encontrado", "codigoPedido", e.getMessage());
             return ResponseEntity.badRequest().body(erro);
         }
+    }
+
+    @GetMapping("{codigo}")
+    public ResponseEntity<DetalhePedidoRepresentation> obterDetalhesPedido(
+        @PathVariable("codigo") Long codigo
+    ) {
+        return service.carregarDadosCompletosPedido(codigo)
+            .map(detalhePedidoMapper::map)
+            .map(ResponseEntity::ok)
+            .orElseGet(() -> ResponseEntity.notFound().build());
     }
 }
