@@ -4,3 +4,4 @@ https://hub.docker.com/r/confluentinc/cp-kafka
 https://docs.confluent.io/platform/current/installation/docker/config-reference.html#confluent-ak-configuration
 https://www.min.io/
 https://www.jaspersoft.com/
+https://docs.rustfs.com/en
