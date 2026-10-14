@@ -3,12 +3,10 @@ package io.github.marcionavarro.icompras.faturamento.api;
 import io.github.marcionavarro.icompras.faturamento.bucket.BucketFile;
 import io.github.marcionavarro.icompras.faturamento.bucket.BucketService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.InputStream;
@@ -32,6 +30,16 @@ public class BucketController {
 
         } catch (Exception e) {
             return ResponseEntity.status(500).body("Erro ao enviar o arquivo: " + e.getMessage());
+        }
+    }
+
+    @GetMapping
+    public ResponseEntity<String> getUrl(@RequestParam String filename) {
+        try {
+            String url = service.getUrl(filename);
+            return ResponseEntity.status(HttpStatus.MOVED_PERMANENTLY).body(url);
+        } catch (Exception e) {
+            return ResponseEntity.status(500).body("Erro ao obter URL do arquivo: " + e.getMessage());
         }
     }
 }
