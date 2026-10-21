@@ -6,6 +6,7 @@ import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 import org.apache.commons.collections4.map.HashedMap;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Value;
+
 import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Service;
 
@@ -25,6 +26,8 @@ public class NotaFiscalService {
     public byte[] gerarNota(Pedido pedido) {
         try (InputStream inputStream = notaFiscal.getInputStream()) {
             Map<String, Object> params = getParams(pedido);
+
+            params.put("LOGO", logo.getFile().getAbsolutePath());
 
             var dataSource = new JRBeanCollectionDataSource(pedido.itens());
 
@@ -51,6 +54,7 @@ public class NotaFiscalService {
         params.put("TELEFONE", pedido.cliente().telefone());
         params.put("DATA_PEDIDO", pedido.data());
         params.put("TOTAL_PEDIDO", pedido.total());
+
         return params;
     }
 }

@@ -1,9 +1,9 @@
-package io.github.marcionavarro.icompras.faturamento.subscriber;
+package io.github.marcionavarro.icompras.faturamento.service;
 
 import io.github.marcionavarro.icompras.faturamento.bucket.BucketFile;
 import io.github.marcionavarro.icompras.faturamento.bucket.BucketService;
 import io.github.marcionavarro.icompras.faturamento.model.Pedido;
-import io.github.marcionavarro.icompras.faturamento.service.NotaFiscalService;
+import io.github.marcionavarro.icompras.faturamento.publisher.representation.FaturamentoPublisher;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.MediaType;
@@ -18,9 +18,10 @@ public class GeradorNotaFiscalService {
 
     private final NotaFiscalService notaFiscalService;
     private final BucketService bucketService;
+    private final FaturamentoPublisher publisher;
 
     public void gerar(Pedido pedido) {
-        log.info("Gerada nota fiscal para o pedido {}", pedido.codigo());
+        log.info("Gerando nota fiscal para o pedido {}", pedido.codigo());
 
         try {
             byte[] byteArray = notaFiscalService.gerarNota(pedido);
@@ -30,6 +31,11 @@ public class GeradorNotaFiscalService {
                 nomeArquivo, new ByteArrayInputStream(byteArray), MediaType.APPLICATION_PDF, byteArray.length);
 
             bucketService.upload(file);
+
+            String url = bucketService.getUrl(nomeArquivo);
+            publisher.publicar(pedido, url);
+
+            log.info("Gerada a nota fiscal, nome do arquivo: {}", nomeArquivo);
         } catch (RuntimeException e) {
             log.error(e.getMessage(), e);
         }

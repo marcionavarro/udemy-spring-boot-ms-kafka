@@ -2,6 +2,7 @@ package io.github.marcionavarro.icompras.faturamento.subscriber;
 
 import io.github.marcionavarro.icompras.faturamento.mapper.PedidoMapper;
 import io.github.marcionavarro.icompras.faturamento.model.Pedido;
+import io.github.marcionavarro.icompras.faturamento.service.GeradorNotaFiscalService;
 import io.github.marcionavarro.icompras.faturamento.subscriber.representation.DetalhePedidoRepresentation;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
