@@ -1,10 +1,10 @@
-package io.github.marcionavarro.icompras.faturamento;
+package io.github.marcionavarro.icompras.logistica;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class FaturamentoApplicationTests {
+class LogisticaApplicationTests {
 
 	@Test
 	void contextLoads() {

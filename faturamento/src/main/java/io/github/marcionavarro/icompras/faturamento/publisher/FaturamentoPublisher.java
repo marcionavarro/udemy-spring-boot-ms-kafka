@@ -1,7 +1,8 @@
-package io.github.marcionavarro.icompras.faturamento.publisher.representation;
+package io.github.marcionavarro.icompras.faturamento.publisher;
 
 import io.github.marcionavarro.icompras.faturamento.model.Pedido;
-import io.github.marcionavarro.icompras.faturamento.subscriber.AtualizacaoStatusPedido;
+import io.github.marcionavarro.icompras.faturamento.publisher.representation.AtualizacaoStatusPedido;
+import io.github.marcionavarro.icompras.faturamento.publisher.representation.StatusPedido;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;

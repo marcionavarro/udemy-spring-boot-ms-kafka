@@ -3,7 +3,7 @@ package io.github.marcionavarro.icompras.faturamento.service;
 import io.github.marcionavarro.icompras.faturamento.bucket.BucketFile;
 import io.github.marcionavarro.icompras.faturamento.bucket.BucketService;
 import io.github.marcionavarro.icompras.faturamento.model.Pedido;
-import io.github.marcionavarro.icompras.faturamento.publisher.representation.FaturamentoPublisher;
+import io.github.marcionavarro.icompras.faturamento.publisher.FaturamentoPublisher;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.MediaType;
