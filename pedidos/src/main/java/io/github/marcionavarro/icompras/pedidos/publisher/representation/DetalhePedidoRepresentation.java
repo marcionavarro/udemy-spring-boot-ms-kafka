@@ -1,10 +1,12 @@
 package io.github.marcionavarro.icompras.pedidos.publisher.representation;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import io.github.marcionavarro.icompras.pedidos.model.enums.StatusPedido;
 
 import java.math.BigDecimal;
 import java.util.List;
 
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public record DetalhePedidoRepresentation(
     Long codigo,
     Long codigoCliente,
