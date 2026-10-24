@@ -38,3 +38,10 @@ icompras:
         pedidos-faturados: 'icompras.pedidos-faturados'
         pedidos-enviados: 'icompras.pedidos-enviados'
 
+logging:
+  level:
+    # Mude para INFO ou comente com '#' para voltar a ver os logs
+    org.apache.kafka: WARN
+    org.hibernate: WARN
+    org.hibernate.dialect.Dialect: WARN
+
