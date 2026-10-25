@@ -22,3 +22,10 @@ minio:
   access-key: minioadmin
   secret-key: minioadmin
   bucket-name: icompras.faturas
+
+logging:
+  level:
+    # Mude para INFO ou comente com '#' para voltar a ver os logs
+    org.apache.kafka: WARN
+    org.hibernate: WARN
+    org.hibernate.dialect.Dialect: WARN

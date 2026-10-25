@@ -16,3 +16,10 @@ icompras:
 
 server:
   port: 8084
+
+logging:
+  level:
+    # Mude para INFO ou comente com '#' para voltar a ver os logs
+    org.apache.kafka: WARN
+    org.hibernate: WARN
+    org.hibernate.dialect.Dialect: WARN
